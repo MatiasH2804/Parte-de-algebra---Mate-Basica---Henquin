@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora paso a paso de determinantes</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Algebra lineal - Determinantes</p>
+      <h1>Calculadora paso a paso de determinantes</h1>
+      <p class="subtitle">Carga una matriz cuadrada y obtiene el determinante con desarrollo didactico, tarjetas numeradas y ecuaciones MathJax.</p>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="card controls-card">
+      <div class="card-title-row">
+        <div>
+          <h2>1. Matriz de entrada</h2>
+          <p>Admite enteros, decimales y fracciones como <code>3/4</code> o <code>-5/2</code>.</p>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <label>
+          Orden
+          <select id="orden" aria-label="Orden de la matriz">
+            <option value="2">2 x 2</option>
+            <option value="3" selected>3 x 3</option>
+            <option value="4">4 x 4</option>
+            <option value="5">5 x 5</option>
+            <option value="6">6 x 6</option>
+            <option value="7">7 x 7</option>
+            <option value="8">8 x 8</option>
+          </select>
+        </label>
+
+        <button id="btnCrear" type="button" class="btn secondary">Crear matriz</button>
+        <button id="btnEjemplo" type="button" class="btn ghost">Cargar ejemplo</button>
+        <button id="btnLimpiar" type="button" class="btn ghost">Limpiar</button>
+      </div>
+
+      <div id="matriz" class="matrix-wrapper" aria-live="polite"></div>
+
+      <div class="actions">
+        <button id="btnResolver" type="button" class="btn primary">Calcular determinante paso a paso</button>
+      </div>
+    </section>
+
+    <section class="card theory-card">
+      <h2>2. Metodo usado</h2>
+      <div class="theory-block">
+        <p>Para orden 2 se aplica la formula directa:</p>
+        <div class="math-display">$$\det(A)=ad-bc$$</div>
+        <p>Para orden 3 y 4 se usa expansion de Laplace sobre la primera fila:</p>
+        <div class="math-display">$$\det(A)=a_{11}M_{11}-a_{12}M_{12}+a_{13}M_{13}-\cdots$$</div>
+        <p>Para orden 5 a 8 se usa eliminacion gaussiana explicada paso a paso:</p>
+        <div class="math-display">$$\det(A)=(-1)^p\prod_{i=1}^{n}u_{ii}$$</div>
+      </div>
+    </section>
+
+    <section class="card results-card">
+      <div class="card-title-row">
+        <div>
+          <h2>3. Procedimiento paso a paso</h2>
+          <p id="estado">Esperando una matriz para calcular.</p>
+        </div>
+      </div>
+      <div id="resultado" class="resultado-empty">Todavia no se calculo ningun determinante.</div>
+      <div id="pasos" class="steps"></div>
+    </section>
+  </main>
+</body>
+</html>
